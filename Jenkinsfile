@@ -23,7 +23,7 @@ pipeline {
     
     post {
         always {
-            junit 'target/surefire-reports/*.xml'
+            junit 'target/site/jacoco/jacoco.xml'
         }
     }
 }
