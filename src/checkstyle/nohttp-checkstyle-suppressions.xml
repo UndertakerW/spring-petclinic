@@ -7,5 +7,6 @@
 	<suppress files="node/.*" checks=".*"/>
 	<suppress files="build/.*" checks=".*"/>
 	<suppress files="[\\/]build.log" checks="NoHttp"/>
+	<suppress files="Jenkinsfile" checks="NoHttp"/>
 	<suppress files=".+\.(jar|git|ico|p12|gif|jks|jpg|svg|txt)" checks="NoHttp"/>
 </suppressions>
