@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/UndertakerW/spring-petclinic.git'
+                git 'https://github.com/UndertakerW/spring-petclinic.git'
             }
         }
         
@@ -19,11 +19,22 @@ pipeline {
                 sh 'mvn -B test'
             }
         }
-    }
-    
-    post {
-        always {
-            junit 'target/surefire-reports/*.xml'
+
+        stage('Results') {
+            junit '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts 'target/*.jar'
+        }
+
+        stage('SonarQube analysis') {
+            def scannerHome = tool 'sonarqube';
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner \
+                -D sonar.login=admin \
+                -D sonar.password=admin \
+                -D sonar.projectKey=spring-petclinic \
+                -D sonar.host.url=http://localhost:9000/"
+            }
         }
     }
+    
 }
