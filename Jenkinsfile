@@ -21,18 +21,22 @@ pipeline {
         }
 
         stage('Results') {
-            junit '**/target/surefire-reports/TEST-*.xml'
-            archiveArtifacts 'target/*.jar'
+            steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archiveArtifacts 'target/*.jar'
+            }
         }
 
         stage('SonarQube analysis') {
-            def scannerHome = tool 'sonarqube';
-            withSonarQubeEnv('sonarqube') {
+            steps {
+                def scannerHome = tool 'sonarqube';
+                withSonarQubeEnv('sonarqube') {
                 sh "${scannerHome}/bin/sonar-scanner \
                 -D sonar.login=admin \
                 -D sonar.password=admin \
                 -D sonar.projectKey=spring-petclinic \
                 -D sonar.host.url=http://localhost:9000/"
+                }
             }
         }
     }
