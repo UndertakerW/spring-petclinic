@@ -10,13 +10,13 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh '/opt/maven/bin/mvn -B clean package'
+                sh 'mvn -B clean package'
             }
         }
         
         stage('Test') {
             steps {
-                sh '/opt/maven/bin/mvn -B test'
+                sh 'mvn -B test'
             }
         }
     }
