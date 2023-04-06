@@ -29,13 +29,12 @@ pipeline {
 
         stage('SonarQube analysis') {
             steps {
-                def scannerHome = tool 'sonarqube';
                 withSonarQubeEnv('sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner \
-                -D sonar.login=admin \
-                -D sonar.password=admin \
-                -D sonar.projectKey=spring-petclinic \
-                -D sonar.host.url=http://localhost:9000/"
+                    sh "${tool 'sonarqube'}/bin/sonar-scanner \
+                    -D sonar.login=admin \
+                    -D sonar.password=admin \
+                    -D sonar.projectKey=spring-petclinic \
+                    -D sonar.host.url=http://localhost:9000/"
                 }
             }
         }
