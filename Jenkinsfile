@@ -34,12 +34,13 @@ pipeline {
         stage('SonarQube') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh "${tool 'sonarqube'}/bin/sonar-scanner \
-                    -D sonar.login=admin \
-                    -D sonar.password=admin \
+                    sh "mvn sonar:sonar \
+                    -D sonar.login=${params.SONARQUBE_USER} \
+                    -D sonar.password=${params.SONARQUBE_PASSWORD} \
                     -D sonar.projectKey=spring-petclinic \
-                    -D sonar.host.url=http://${SONARQUBE_IP}:9000/ \
+                    -D sonar.host.url=http://${params.SONARQUBE_IP}:9000/ \
                     -D sonar.sources=src/main/java/ \
+                    -D sonar.tests=src/test/java/ \
                     -D sonar.java.binaries=target/classes"
                 }
             }
