@@ -38,7 +38,7 @@ pipeline {
                     -D sonar.login=admin \
                     -D sonar.password=admin \
                     -D sonar.projectKey=spring-petclinic \
-                    -D sonar.host.url=http://10.3.220.3:9000/ \
+                    -D sonar.host.url=http://${SONARQUBE_IP}:9000/ \
                     -D sonar.sources=src/main/java/ \
                     -D sonar.java.binaries=target/classes"
                 }
