@@ -10,6 +10,4 @@
         - target/*.jar
 
     - name: Run app
-      ansible.builtin.shell: "java -jar target/*.jar"
-      args:
-        chdir: /app
+      ansible.builtin.shell: "java -jar /app/*.jar"
