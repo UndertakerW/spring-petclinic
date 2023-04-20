@@ -1,0 +1,15 @@
+- name: Deploy PetClinic App
+  hosts: deploy-server
+  become: yes
+  tasks:
+    - name: Copy app to the deployment server
+      ansible.builtin.copy:
+        src: target/spring-petclinic-*.jar
+        dest: /app/spring-petclinic.war
+        owner: deploy-server
+        group: deploy-server
+
+    - name: Restart Tomcat
+      ansible.builtin.systemd:
+        name: deploy-server
+        state: restarted
