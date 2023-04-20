@@ -1,6 +1,7 @@
 - name: Deploy PetClinic App
   hosts: my-deploy-server
   become: yes
+  become_method: docker
   tasks:
     - name: Copy app to the deployment server
       ansible.builtin.copy:
