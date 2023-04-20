@@ -10,4 +10,4 @@
         - target/*.jar
 
     - name: Run app
-      ansible.builtin.shell: "java -jar /app/spring-petclinic.jar > /dev/null 2>&1 &"
+      shell: java -jar /app/spring-petclinic.jar > /dev/null 2>&1 &
