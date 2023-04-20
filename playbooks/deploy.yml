@@ -4,7 +4,7 @@
   tasks:
     - name: Copy app to the deployment server
       ansible.builtin.copy:
-        src: target/spring-petclinic-*.jar
+        src: ../target/spring-petclinic-*.jar
         dest: /app/spring-petclinic.war
 
     - name: Run app
