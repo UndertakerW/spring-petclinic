@@ -5,9 +5,9 @@
     - name: Copy app to the deployment server
       ansible.builtin.copy:
         src: "{{ item }}"
-        dest: /app/spring-petclinic.war
+        dest: /app/spring-petclinic.jar
       with_fileglob:
         - target/*.jar
 
     - name: Run app
-      ansible.builtin.shell: "java -jar /app/*.jar"
+      ansible.builtin.shell: "java -jar /app/spring-petclinic.jar"
