@@ -4,8 +4,10 @@
   tasks:
     - name: Copy app to the deployment server
       ansible.builtin.copy:
-        src: target/spring-petclinic-*.jar
+        src: "{{ item }}"
         dest: /app/spring-petclinic.war
+      with_fileglob:
+        - target/*.jar
 
     - name: Run app
       ansible.builtin.shell: "java -jar target/*.jar"
