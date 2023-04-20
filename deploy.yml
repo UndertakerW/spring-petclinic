@@ -11,3 +11,5 @@
 
     - name: Run app
       ansible.builtin.shell: "java -jar /app/spring-petclinic.jar"
+      async: 0
+      poll: 0
