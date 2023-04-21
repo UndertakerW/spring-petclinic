@@ -9,7 +9,7 @@
       with_fileglob:
         - target/*.jar
 
-    - name: Run app
-      shell: java -jar /app/spring-petclinic.jar &
+    - name: Run spring-petclinic app
+      shell: java -jar /app/spring-petclinic.jar > /dev/null 2>&1 &
       async: 5
       poll: 0
