@@ -11,5 +11,5 @@
 
     - name: Run spring-petclinic app
       shell: java -jar /app/spring-petclinic.jar > /dev/null 2>&1 &
-      async: 0
+      async: -1
       poll: 0
