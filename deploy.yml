@@ -10,4 +10,6 @@
         - target/*.jar
 
     - name: Run app
-      shell: java -jar /app/spring-petclinic.jar
+      shell: java -jar /app/spring-petclinic.jar &
+      async: 5
+      poll: 0
